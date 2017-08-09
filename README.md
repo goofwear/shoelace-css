@@ -12,16 +12,16 @@ A back to the basics CSS starter kit. For when you don’t need the whole boot.
 
 ## Developers
 
-Shoelace ships with a CLI that can be used to build a dist and optionally publish it to an S3 bucket. To build a dist, run:
+Shoelace ships with a CLI that can be used to build a release and generate documentation. To build a release, run:
 
 ```
-node shoelace.js --build
+node build.js --build
 ```
 
 To see all available flags, run:
 
 ```
-node shoelace.js --help
+node build.js --help
 ```
 
 ---

@@ -1,5 +1,5 @@
 /*!
-  Shoelace.css tabs {version}
+  Shoelace.css tabs {{version}}
   (c) A Beautiful Site, LLC
 
   Released under the MIT license
@@ -23,7 +23,7 @@
 // Tabs not toggling?
 //   - Make sure you've loaded jQuery or Zepto before this script
 //   - Make sure your tabs are structured properly per the docs
-//   - Make sure your tab navs and tab panes have the correct IDs
+//   - Make sure your tab navs and tab panes have the correct href and id attributes
 //
 (function() {
   /* eslint-env browser, jquery */
@@ -32,37 +32,60 @@
 
   if(typeof jQuery === 'undefined' && typeof Zepto === 'undefined') {
     throw new Error('Shoelace tabs require either jQuery or Zepto.');
-  } else {
-    (window.jQuery || window.Zepto)(function($) {
-      // Watch for clicks on tabs
-      $(document).on('click', '.tabs-nav a', function(event) {
-        var tabs = $(this).closest('.tabs');
-        var tabNav = this;
-        var selectedPane = $(tabs).find(tabNav.hash).get(0);
+  }
 
-        event.preventDefault();
+  (window.jQuery || window.Zepto)(function($) {
+    // Watch for mutations on tabs and show the appropriate tab pane
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        // Only observe class changes
+        if(mutation.type === 'attributes' && mutation.attributeName === 'class') {
+          var tab = $(mutation.target).get(0);
+          var tabs = $(mutation.target).closest('.tabs').get(0);
+          var tabsNav = $(mutation.target).closest('.tabs-nav').get(0);
+          var tabPane = tab.tagName === 'A' ? $(tabs).find(tab.hash) : null;
 
-        // Ignore tabs without an href or with the "disabled" class
-        if(!tabNav.hash || $(tabNav).is('.disabled')) {
-          return;
-        }
+          // The mutation must be on a tab
+          if(!$(tab).is('a') || !tabs || !tabsNav) return;
 
-        // Make the selected tab active
-        $(tabNav).siblings().removeClass('active');
-        $(tabNav).addClass('active');
+          // Disabled tabs can't receive the active class, so we just remove it
+          if($(tab).is('.disabled.active')) {
+            $(tab).removeClass('active');
+            return;
+          }
 
-        // Hide active tab panes that aren't getting selected
-        $(tabs).find('.tabs-pane.active').not(selectedPane).each(function() {
-          $(this).removeClass('active');
-          $(tabs).trigger('hide', this);
-        });
+          // Toggle the tab pane based on the tab's active state
+          if($(tab).is('.active')) {
+            // Remove the active class from other tabs
+            $(tab).siblings('.active').removeClass('active');
 
-        // Show the selected tab pane
-        if(selectedPane && !$(selectedPane).is('.active')) {
-          $(selectedPane).addClass('active');
-          $(tabs).trigger('show', selectedPane);
+            // Show the selected tab
+            $(tabPane).addClass('active');
+            $(tabs).trigger('show', tabPane);
+          } else {
+            // Hide the previously selected tab
+            $(tabPane).removeClass('active');
+            $(tabs).trigger('hide', tabPane);
+          }
         }
       });
     });
-  }
+
+    // Observe the body so we can handle dynamically created elements
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+      attributeOldValue: true,
+      subtree: true
+    });
+
+    // Watch for clicks on tabs
+    $(document).on('click', '.tabs-nav a', function(event) {
+      // Make the selected tab active. No need to worry about disabled tabs, showing the tab pane,
+      // or making other tabs inactive because the mutation observer handles everything.
+      $(this).addClass('active');
+
+      event.preventDefault();
+    });
+  });
 })();

@@ -1,85 +1,58 @@
 body {
-  border-top: solid .3rem var(--color-aqua);
+  border-top: solid .3rem #0074d9;
 }
 
 #head {
   padding: 0 2rem;
-  margin: var(--component-spacing-big) 0;
+  margin: 2rem 0;
 }
 
 #head img {
   width: 24rem;
   margin: 0 auto;
-  display: block;
-}
-
-#wrap {
-  max-width: 60rem;
-  padding: 0 2rem;
-  margin: 2rem auto;
-  display: grid;
-  grid-template-columns: 12rem calc(100% - 12rem);
+  display: inline-block;
 }
 
 #nav {
   text-align: right;
-  border-right: solid var(--component-border-width) var(--component-border-color);
+  list-style: none;
+  border-right: solid 1px #ddd;
   padding-right: 1rem;
-  margin-right: 2rem;
 }
 
-#nav a {
-  border-radius: var(--component-border-radius);
+#nav li {
   margin: .5rem 0;
   display: block;
 }
 
 #nav a.current {
-  color: var(--text-muted);
+  color: #aaa;
   cursor: default;
 }
 
-#nav a.current:hover {
+@media screen and (max-width: 767px) {
+  #nav {
+    border: none;
+    text-align: center;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
 
+  #nav li {
+    margin: .5rem;
+    display: inline-block;
+  }
 }
 
 #foot {
   text-align: center;
-  margin: var(--component-spacing-big) 0;
+  margin: 2rem 0;
 }
 
 #foot img {
   width: 14rem;
   display: inline-block;
   margin: .5rem 0;
-}
-
-#homepage #wrap {
-  max-width: 48rem;
-  display: block;
-}
-
-@media (max-width: 60rem) {
-  #head {
-    padding: 0 1rem;
-  }
-
-  #wrap {
-    padding: 0 1rem;
-    display: block;
-  }
-
-  #nav {
-    font-size: .9rem;
-    border: none;
-    text-align: center;
-    margin: 0 0 2rem 0;
-  }
-
-  #nav a {
-    margin: .3rem;
-    display: inline-block;
-  }
 }
 
 h1[id]:not(:first-child),
@@ -91,11 +64,11 @@ h4[id]:not(:first-child) {
 
 h3[id],
 h4[id] {
-  color: var(--color-gray);
+  color: #aaa;
 }
 
 pre {
-  margin-bottom: 1rem !important; /* Prism overrides our bottom margin */
+  margin-bottom: 1.5rem !important; /* Prism overrides our bottom margin */
 }
 
 pre code {
@@ -104,39 +77,33 @@ pre code {
   display: block;
 }
 
-@media (max-width: 45rem) {
-  a.bookmark {
-    width: auto;
-    margin-left: 0;
-  }
+a code {
+  color: inherit;
 }
 
-/* Column helpers */
-.two-column {
-  column-count: 2;
-  column-gap: 1rem;
+.browsers {
+  text-align: center;
 }
 
-@media (max-width: 50rem) {
-  .two-column {
-    column-count: 1;
-    column-gap: 0;
-  }
+.browsers img {
+  max-width: 6rem;
+  display: inline-block;
+  margin: 0 1rem 1rem 0;
 }
 
 /* Sizing examples */
 .width-sizing-example {
-  border: solid 1px var(--component-border-color);
+  border: solid 1px #ddd;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .width-sizing-example div {
-  background: var(--color-primary);
+  background: #0074d9;
   color: white;
   text-align: center;
   padding: .25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .width-sizing-example div:last-child {
@@ -144,16 +111,16 @@ pre code {
 }
 
 .height-sizing-example {
-  border: solid 1px var(--component-border-color);
+  border: solid 1px #ddd;
   height: 15rem;
   padding: 1rem .5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .height-sizing-example div {
   width: calc(25% - 1rem);
   float: left;
-  background: var(--color-primary);
+  background: #0074d9;
   color: white;
   text-align: center;
   padding: .25rem;
@@ -161,24 +128,37 @@ pre code {
 }
 
 /* Loader example */
+.loader-example {
+  margin-left: -.5rem;
+  margin-right: -.5rem;
+}
+
 .loader-example div {
   float: left;
   width: 6rem;
   height: 6rem;
-  border: dashed 1px var(--component-border-color);
-  margin-right: .5rem;
+  border: dashed 1px #ddd;
+  margin: 0 .5rem 1rem .5rem;
 }
 
-/* Tabs example */
-.tabs-vertical-example {
-  display: grid;
-  grid-template-columns: 30% 70%;
+/* Grid example */
+.grid-example {
+  margin-bottom: 1.5rem;
 }
 
-.tabs-vertical-example .tabs-nav {
-  padding-right: 2rem;
+.grid-example .row .col,
+.grid-example .row [class*="col-"] {
+  background: #0074d9;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
 
-.tabs-vertical-example .tabs-nav a {
-  display: block;
+.grid-example .row .row .col,
+.grid-example .row .row [class*="col-"] {
+  background: tomato;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
 }

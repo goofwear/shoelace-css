@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="Add tabs to your app with the tabs component.">
   <link rel="icon" href="../source/img/favicon.png">
-  <link rel="stylesheet" href="../source/css/shoelace.css">
+  <link rel="stylesheet" href="../dist/shoelace.css">
   <link rel="stylesheet" href="../source/css/_docs.css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/AGMStudio/prism-theme-one-dark/f81fe477/prism-onedark.css">
   <title>Tabs</title>
@@ -19,37 +19,44 @@
         <img src="../source/img/wordmark.svg" alt="Shoelace logo">
       </a>
     </h1>
-    <p class="text-muted text-small">
+
+    <p class="text-secondary text-small">
       A back to the basics CSS starter kit. For when you don’t need the whole boot.
     </p>
   </header>
 
-  <main id="wrap">
-    <nav id="nav">
-      <a href="installing.html">Installing</a>
-      <a href="customizing.html">Customizing</a>
-      <a href="content.html">Content</a>
-      <a href="alerts.html">Alerts</a>
-      <a href="badges.html">Badges</a>
-      <a href="buttons.html">Buttons</a>
-      <a href="dropdowns.html">Dropdowns</a>
-      <a href="forms.html">Forms</a>
-      <a href="loaders.html">Loaders</a>
-      <a href="switches.html">Switches</a>
-      <a href="tabs.html">Tabs</a>
-      <a href="tables.html">Tables</a>
-      <a href="utilities.html">Utilities</a>
-      <a href="grid-system.html">Grid System</a>
-      <a href="icons.html">Icons</a>
-      <a href="browser-support.html">Browser Support</a>
-      <a href="attribution.html">Attribution</a>
-    </nav>
+  <main class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <ul id="nav">
+          <li><a href="installing.html">Installing</a></li>
+          <li><a href="customizing.html">Customizing</a></li>
+          <li><a href="content.html">Content</a></li>
+          <li><a href="alerts.html">Alerts</a></li>
+          <li><a href="badges.html">Badges</a></li>
+          <li><a href="buttons.html">Buttons</a></li>
+          <li><a href="dropdowns.html">Dropdowns</a></li>
+          <li><a href="file-buttons.html">File Buttons</a></li>
+          <li><a href="forms.html">Forms</a></li>
+          <li><a href="grid-system.html">Grid System</a></li>
+          <li><a href="loaders.html">Loaders</a></li>
+          <li><a href="progress-bars.html">Progress Bars</a></li>
+          <li><a href="switches.html">Switches</a></li>
+          <li><a href="tabs.html">Tabs</a></li>
+          <li><a href="tables.html">Tables</a></li>
+          <li><a href="utilities.html">Utilities</a></li>
+          <li><a href="icons.html">Icons</a></li>
+          <li><a href="browser-support.html">Browser Support</a></li>
+          <li><a href="attribution.html">Attribution</a></li>
+        </ul>
+      </div>
 
-    <div id="content">
-      <h2 id="tabs">Tabs</h2>
+      <div class="col-md-9">
+        <div id="content">
+          <h2 id="tabs">Tabs</h2>
 <p>Tab sets can be created using the markup below. By default, Shoelace renders tabs as pills because they respond better than traditional tabs when rendered on smaller screens.</p>
-<p>Note the class names used for the main container, the tab navs, and the tab panes. Also note that each tab links to its respective tab pane’s <code>id</code>.</p>
-<p>To disable a tab, add <code>disabled</code> to the appropriate tab nav.</p>
+<p>Note the class names used for the main container, the tabs, and the tab panes. Also note that each tab links to its respective tab pane’s <code>id</code>.</p>
+<p>For initial rendering, make sure the appropriate tab and tab pane have the <code>active</code> class.</p>
 <pre><code class="lang-html">&lt;div class=&quot;tabs&quot;&gt;
   &lt;nav class=&quot;tabs-nav&quot;&gt;
     &lt;a href=&quot;#tab-1&quot; class=&quot;active&quot;&gt;Tab 1&lt;/a&gt;
@@ -108,60 +115,68 @@
 </div>
 
 <h3 id="vertical-tabs">Vertical Tabs</h3>
-<p>Tabs can be made vertical by adding custom CSS rules. Shoelace doesn’t include these styles by default because of the many ways tabs can be positioned, customized, and made responsive.</p>
-<p>Here’s an example of vertical tabs that uses the CSS grid. The markup is exactly the same as the previous example, except the tabs container has a custom class and the following custom styles.</p>
-<pre><code class="lang-css">.tabs-vertical-example {
-  display: grid;
-  grid-template-columns: 30% 70%;
-}
+<p>Tabs can be made vertical when used with the <a href="grid-system.html">grid system</a> and <code>tabs-nav-block</code>.</p>
+<pre><code class="lang-html">&lt;div class=&quot;tabs&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-4&quot;&gt;
+      &lt;nav class=&quot;tabs-nav tabs-nav-block&quot;&gt;
+        &lt;a href=&quot;#tab-1-example-2&quot; class=&quot;active&quot;&gt;Tab 1&lt;/a&gt;
+        &lt;a href=&quot;#tab-2-example-2&quot;&gt;Tab 2&lt;/a&gt;
+        &lt;a href=&quot;#tab-3-example-2&quot;&gt;Tab 3&lt;/a&gt;
+        &lt;a href=&quot;#&quot; class=&quot;disabled&quot;&gt;Disabled&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
 
-.tabs-vertical-example .tabs-nav {
-  padding-right: 2rem;
-}
-
-.tabs-vertical-example .tabs-nav a {
-  display: block;
-}
+    &lt;div class=&quot;col-8&quot;&gt;
+      &lt;div class=&quot;tabs-pane active&quot; id=&quot;tab-1-example-2&quot;&gt;...&lt;/div&gt;
+      &lt;div class=&quot;tabs-pane&quot; id=&quot;tab-2-example-2&quot;&gt;...&lt;/div&gt;
+      &lt;div class=&quot;tabs-pane&quot; id=&quot;tab-3-example-2&quot;&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
-<div class="tabs tabs-vertical-example">
-  <nav class="tabs-nav tabs-nav-block">
-    <a href="#tab-1-example-2" class="active">Tab 1</a>
-    <a href="#tab-2-example-2">Tab 2</a>
-    <a href="#tab-3-example-2">Tab 3</a>
-    <a href="#" class="disabled">Disabled</a>
-  </nav>
-
-  <div class="tabs-pane active" id="tab-1-example-2">
-    <h3>Tab 1</h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui repellat ea magni magnam
-      assumenda voluptas accusantium nemo. Iusto beatae illum mollitia aut quasi odit facilis
-      officiis, laudantium debitis! Excepturi, quis!
-    </p>
-  </div>
-
-  <div class="tabs-pane" id="tab-2-example-2">
-    <h3>Tab 2</h3>
-    <p>
-      Atque eius voluptatibus ipsa ex totam odit, quidem illo distinctio sit! Quod quae minus,
-      aut itaque. Mollitia, dolore! Facere molestiae necessitatibus sint recusandae incidunt
-      pariatur labore iste vel, velit odit.
-    </p>
-  </div>
-
-  <div class="tabs-pane" id="tab-3-example-2">
-    <h3>Tab 3</h3>
-    <p>
-      Aperiam asperiores optio iusto qui nisi, perspiciatis, ipsum, tenetur explicabo earum et
-      laboriosam odit magni maxime quos molestias aspernatur laudantium harum placeat tempora
-      quae necessitatibus, aut dignissimos totam non! Quod.
-    </p>
+<div class="tabs">
+  <div class="row">
+    <div class="col-4">
+      <nav class="tabs-nav tabs-nav-block">
+        <a href="#tab-1-example-2" class="active">Tab 1</a>
+        <a href="#tab-2-example-2">Tab 2</a>
+        <a href="#tab-3-example-2">Tab 3</a>
+        <a href="#" class="disabled">Disabled</a>
+      </nav>
+    </div>
+    <div class="col-8">
+      <div class="tabs-pane active" id="tab-1-example-2">
+        <h3>Tab 1</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui repellat ea magni magnam
+          assumenda voluptas accusantium nemo. Iusto beatae illum mollitia aut quasi odit facilis
+          officiis, laudantium debitis! Excepturi, quis!
+        </p>
+      </div>
+      <div class="tabs-pane" id="tab-2-example-2">
+        <h3>Tab 2</h3>
+        <p>
+          Atque eius voluptatibus ipsa ex totam odit, quidem illo distinctio sit! Quod quae minus,
+          aut itaque. Mollitia, dolore! Facere molestiae necessitatibus sint recusandae incidunt
+          pariatur labore iste vel, velit odit.
+        </p>
+      </div>
+      <div class="tabs-pane" id="tab-3-example-2">
+        <h3>Tab 3</h3>
+        <p>
+          Aperiam asperiores optio iusto qui nisi, perspiciatis, ipsum, tenetur explicabo earum et
+          laboriosam odit magni maxime quos molestias aspernatur laudantium harum placeat tempora
+          quae necessitatibus, aut dignissimos totam non! Quod.
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 
-<h3 id="events">Events</h3>
-<p>Tabs require <code>shoelace.js</code> to make them interactive. You don’t need to initialize them. Simply include the script and everything “just works.”</p>
-<p>There is no JavaScript API. Shoelace’s philosophy believes that custom components should act like native components as much as possible. You can, however, listen for various events:</p>
+<h3 id="interactivity">Interactivity</h3>
+<p>Tabs require <code>shoelace.js</code> for interactivity. You don’t need to initialize anything. Just include the script and everything “just works.”</p>
+<p>There is no JavaScript API. Shoelace’s philosophy believes that custom components should act like native components as much as possible. You can, however, listen for various events.</p>
 <ul>
 <li><code>show</code> – Fires when a tab is shown. The second callback argument is a reference to the respective tab pane.</li>
 <li><code>hide</code> – Fires when a tab is hidden. The second callback argument is a reference to the respective tab pane.</li>
@@ -175,35 +190,45 @@
     console.log(&#39;hide&#39;, event.target, tabPane);
   });
 </code></pre>
+<p>To activate a tab programmatically, just add the <code>active</code> class to it. We use a <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver">mutation observer</a> to remove the active class on other tabs and to show/hide the appropriate tab panes automatically.</p>
+<pre><code class="lang-javascript">$(&#39;#tab-id&#39;).addClass(&#39;active&#39;);
+</code></pre>
+<p>To disable a tab, add the <code>disabled</code> class to the appropriate tab.</p>
 
-    </div>
+        </div>
+      </div>
   </main>
 
   <footer id="foot">
     <a href="../index.html">
       <img src="../source/img/wordmark.svg" alt="Shoelace logo">
     </a>
-    <p class="text-small text-muted">
-      Shoelace.css 1.0.0-beta10 &middot;
-      &copy; A Beautiful Site, LLC
+
+    <p class="text-small text-secondary">
+      1.0.0-beta24
     </p>
 
-    <p class="margin-y-small text-center">
+    <p class="mar-y-sm text-center">
       <a class="github-button" href="https://github.com/claviska/shoelace-css/fork" data-size="large" aria-label="Fork claviska/shoelace-css on GitHub">Fork</a>
       <a class="github-button" href="https://github.com/claviska/shoelace-css/releases" data-icon="octicon-cloud-download" data-size="large" aria-label="Download claviska/shoelace-css on GitHub">Download</a>
       <a class="github-button" href="https://github.com/claviska/shoelace-css/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue claviska/shoelace-css on GitHub">Report a Bug</a>
       <a class="github-button" href="https://github.com/claviska/shoelace-css" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star claviska/shoelace-css on GitHub">Star</a>
     </p>
+
     <p>
       <a href="https://twitter.com/shoelacecss" class="button button-info" style="margin-bottom: 1.2rem;">Follow</a>
       <a href="https://paypal.me/claviska" class="button button-success" style="margin-bottom: 1.2rem;">Donate</a>
+    </p>
+
+    <p class="text-small text-secondary">
+      <a href="https://keycdn.com/" class="text-secondary">Accelerated by KeyCDN</a> &middot;
+      &copy; A Beautiful Site, LLC
     </p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
-  <script src="../source/js/dropdowns.js"></script>
-  <script src="../source/js/tabs.js"></script>
+  <script src="../dist/shoelace.js"></script>
   <script>
     $(function() {
       // Highlight current nav item
@@ -211,6 +236,11 @@
         if(this.pathname === location.pathname) {
           $(this).addClass('current');
         }
+      });
+
+      // Intercept dropdown clicks for the demo
+      $('.dropdown').on('select', function(event) {
+        event.preventDefault();
       });
     });
   </script>

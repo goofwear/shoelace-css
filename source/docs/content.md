@@ -6,9 +6,9 @@ description: Default content styles.
 
 ## Content
 
-Shoelace gives you an easy way to customize most HTML elements with variables. You don’t need to apply any classes to achieve these styles — just use the appropriate tags.
+Shoelace provides default content styles that are easy to customize. You don’t need to apply any classes to achieve these styles — just use the appropriate tags.
 
-For easy spacing, Shoelace removes top margins and applies a bottom margin to block elements. By default, text sizing and spacing is measured in `rem` units.
+For easy spacing, Shoelace removes top margins and applies a bottom margin to block elements. By default, text sizing and spacing is measured in `rem` units. Shoelace also sets `box-sizing: border-box` globally to make it easier to properly size elements.
 
 ### Headings `<h1> – <h6>`
 
@@ -24,6 +24,10 @@ For easy spacing, Shoelace removes top margins and applies a bottom margin to bl
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat excepturi repellendus nostrum dolorum dignissimos quis non, minus debitis laborum vero cupiditate sequi neque, magnam dolore nemo possimus, soluta ducimus eaque.
 
 Blanditiis ea qui, veritatis animi recusandae praesentium magnam. Commodi placeat, laboriosam accusamus laudantium quasi eveniet soluta illo ducimus quis doloremque mollitia, officia pariatur deleniti reprehenderit, maxime, dicta libero vero cum.
+
+### Horizontal Rules `<hr>`
+
+---
 
 ### Ordered Lists `<ol>`
 

@@ -1,22 +1,16 @@
 body {
-  border-top: solid .3rem var(--color-aqua);
+  border-top: solid .3rem #0074d9;
 }
 
 #head {
   padding: 0 2rem;
-  margin: var(--component-spacing-big) 0;
+  margin: 2rem 0;
 }
 
 #head img {
   width: 24rem;
   margin: 0 auto;
-  display: block;
-}
-
-#wrap {
-  max-width: 48rem;
-  padding: 0 2rem;
-  margin: 2rem auto;
+  display: inline-block;
 }
 
 pre {
@@ -27,15 +21,4 @@ pre code {
   white-space: pre;
   padding: 0;
   display: block;
-}
-
-@media (max-width: 60rem) {
-  #head {
-    padding: 0 1rem;
-  }
-
-  #wrap {
-    padding: 0 1rem;
-    display: block;
-  }
 }
